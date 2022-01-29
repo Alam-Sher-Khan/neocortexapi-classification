@@ -1,5 +1,9 @@
-12/01/2022
-Local repository created for project and detailed study of already available program code is in progress.
-18/01/2022
-Tried running the project with some images of MNIST dataset of 0,1 and 2. Facing issue of exception 
-(System.InvalidOperationException) for variable 'tempStat'. CUrrently analysing it and studying abount HTM.
+- Local repository created for project 
+- Detailed study of already available program code is in progress.
+
+- Tried running the project with some images of MNIST dataset of 0,1 and 2.
+-  Facing issue of exception (System.InvalidOperationException) for variable 'tempStat'. CUrrently analysing it and studying abount HTM.
+
+- Conducted Experiment with 7,8 and 9
+- Parameters analysis and image proportation analyis with different colors study is in progress.
+
