@@ -1,3 +1,5 @@
 1. Date (11/01/2022) : Fork Created from Neocortexapi-classification and 3 branches created for each member of group.
 Previous dataset was modified and tried running the program with MNIST Dataset. Got exceptions, working on it.
 2. Changed the Old Fruit Dataset and Added Image dataset from MNIST for digits 3,4 and 5.
+3. Added Image dataset from MNIST for digits 6,7 and 8.
+4. Run Exp.3 for 6,7 and 8 and updated the result.
