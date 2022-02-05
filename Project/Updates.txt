@@ -5,4 +5,18 @@
 - CUrrently analysing it and studying abount HTM.
 - Conducted Experiment with 7,8 and 9
 - Parameters analysis and image proportation analyis with different colors study is in progress.
+- Changed the Parameters of JSON file for experiment 4, following parameters were changed:-
+"LocalAreaDensity": 0.1 Changed to "LocalAreaDensity": 0.5
+"InputDimensions": [
+    100,
+    100
+  ],
+
+to
+"InputDimensions": [
+    28,
+    28
+  ],
+- Output result gives the more efficient values of comparision with min,max and average value of dataset 3,4 &5
+  after the local area density and input dimensions are changed.
 
