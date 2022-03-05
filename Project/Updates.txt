@@ -1,22 +1,19 @@
-- Local repository created for project 
+- Local repository created for project. 
 - Detailed study of already available program code is in progress.
-- Tried running the project with some images of MNIST dataset of 0,1 and 2.
+- Tried running the project with some images of MNIST dataset.
 - Facing issue of exception (System.InvalidOperationException) for variable 'tempStat'. 
-- CUrrently analysing it and studying abount HTM.
-- Conducted Experiment with 7,8 and 9
-- Parameters analysis and image proportation analyis with different colors study is in progress.
-- Changed the Parameters of JSON file for experiment 4, following parameters were changed:-
-"LocalAreaDensity": 0.1 Changed to "LocalAreaDensity": 0.5
-"InputDimensions": [
-    100,
-    100
-  ],
-
-to
-"InputDimensions": [
-    28,
-    28
-  ],
-- Output result gives the more efficient values of comparision with min,max and average value of dataset 3,4 &5
-  after the local area density and input dimensions are changed.
-
+- Currently analysing it and studying abount HTM.
+- Conducting Experiments with different datasets.
+- Parameters analysis and image proportation analyis with different parameters is in progress.
+- Changed the Parameters of HTM file for experiment.
+- Following Parameters were changed:-
+    1. Global/Local Inhibition, 
+    2. Potential Radius, 
+    3. Local Area Density and 
+    4. NumofActiveColumnsPerInArea. 
+- Progress to find the best fit correlation between the images of MNIST dataset is in progress.
+- Till now we have conducted several experiments and have been able to find the close best fit correlation in between the images of the dataset.
+- We are working on the prediction code, which is basically used after learning code, prediction result can find the relation of percentage in dataset.
+- Started with the documentation of the project.
+- Collecting data, and information in order to document the result.
+- Plotting graph and finding the value relation between input and output correlation is in progress.
