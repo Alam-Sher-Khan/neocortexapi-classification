@@ -76,18 +76,19 @@ namespace ConsoleApp
 
             // Prediction Code
             // input image encoding
-            // int[] encodedInputImage = ReadImageData("inputImagePathForTest.png",width,height);
-            // var temp1 = cortexLayer.Compute(encodedInputImage, false);
+            //int[] encodedInputImage = ReadImageData("C:\Users\aiman\source\repos\neocortexapi-classification\ImageClassification\ImageClassification\bin\Debug\net6.0\InputFolder\3.png", width,height); // Updated by Aiman Zehra
+            //var temp1 = cortexLayer.Compute(encodedInputImage, false);
 
             // This is a general way to get the SpatialPooler result from the layer.
-            var activeColumns = cortexLayer.GetResult("sp") as int[];
+            //var activeColumns = cortexLayer.GetResult("sp") as int[];
 
-            var sdrOfInputImage = activeColumns.OrderBy(c => c).ToArray();
+            //var sdrOfInputImage = activeColumns.OrderBy(c => c).ToArray();
             
             // Function that needs implementation
             //string predictedLabel =  PredictLabel(sdrOfInputImage, sdrs);
 
             //Console.WriteLine($"The image is predicted as {predictedLabel}");
+            //Console.ReadLine(); // Updated by Aiman Zehra
         }
 
         private Tuple<Dictionary<string, int[]>, Dictionary<string, List<string>>> imageBinarization(List<string> directories, int width, int height)
@@ -232,7 +233,7 @@ namespace ConsoleApp
             cortexLayer.HtmModules.Add("sp", sp);
 
             // Learning process will take 1000 iterations (cycles)
-            int maxSPLearningCycles = 1000;
+            int maxSPLearningCycles = 10;
 
             // Save the result SDR into a list of array
             Dictionary<string, int[]> outputValues = new Dictionary<string, int[]>();
