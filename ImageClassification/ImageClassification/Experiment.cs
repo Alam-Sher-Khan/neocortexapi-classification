@@ -76,10 +76,10 @@ namespace ConsoleApp
 
             // Prediction Code
             // input image encoding
-            //int[] encodedInputImage = ReadImageData("C:\Users\aiman\source\repos\neocortexapi-classification\ImageClassification\ImageClassification\bin\Debug\net6.0\InputFolder\3.png", width,height); // Updated by Aiman Zehra
+            //int[] encodedInputImage = ReadImageData("C:/Users/aiman/source/repos/neocortexapi-classification/ImageClassification/ImageClassification/InputFolder/Nine/9_pic1.png", width,height); 
             //var temp1 = cortexLayer.Compute(encodedInputImage, false);
 
-            // This is a general way to get the SpatialPooler result from the layer.
+            //This is a general way to get the SpatialPooler result from the layer.
             //var activeColumns = cortexLayer.GetResult("sp") as int[];
 
             //var sdrOfInputImage = activeColumns.OrderBy(c => c).ToArray();
@@ -87,8 +87,9 @@ namespace ConsoleApp
             // Function that needs implementation
             //string predictedLabel =  PredictLabel(sdrOfInputImage, sdrs);
 
-           //Console.WriteLine($"The image is predicted as {predictedLabel}");
-            //Console.ReadLine(); 
+            //Console.WriteLine($"The image is predicted as {predictedLabel}");
+            //Console.ReadLine();
+
         }
 
         private Tuple<Dictionary<string, int[]>, Dictionary<string, List<string>>> imageBinarization(List<string> directories, int width, int height)
@@ -268,5 +269,24 @@ namespace ConsoleApp
             }
             return (outputValues,cortexLayer);
         }
+        public string PredictLabel(int[] sdrOfInputImage, Dictionary<string, int[]> sdrs)
+        {
+            string label = "Couldnot able to predict the label";
+            foreach (var k1 in sdrs)
+            {
+                Boolean isArrayEqual = true;
+                int[] newarray = k1.Value;
+                isArrayEqual = sdrOfInputImage.SequenceEqual(newarray);
+                if (isArrayEqual)
+                {
+                    label = k1.Key.ToString();
+                    string[] labelarray = label.Split('\\');
+                    label = labelarray[10];
+                    return label;
+                }
+            }
+            return label;
+        }
     }
 }
+
