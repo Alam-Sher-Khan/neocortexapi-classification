@@ -145,7 +145,7 @@ namespace ConsoleApp
                         }
          
                     }
-                    Console.WriteLine("\n> The Input Image is similar to Digit" + secondEntry.Key + " by " + sumOfSimilarities + " %");
+                    Console.WriteLine("\n> The Input Image is similar to Digit " + secondEntry.Key + " by " + sumOfSimilarities + " %");
                 }
                 //Display the highest similarity  of the Input Image with the training category
                 Console.WriteLine("\n Highest Similarity is: " + temp1 + " % ");
@@ -179,6 +179,7 @@ namespace ConsoleApp
 
                     // Image binarization
                     int[] inputVector = ReadImageData(filePath, height, width);
+                    // Convert inputVector to 2-D array
                     string[] savedVector = ConvertToString(inputVector, height, width);
                     // Write binarized data to a file
                     var baseDir = Path.GetDirectoryName(filePath);
@@ -207,7 +208,7 @@ namespace ConsoleApp
         }
 
         /// <summary>
-        /// Returns Binarized Image in integer array
+        /// Returns Binarized Image in integer array,color threshold not required for black and white images
         /// </summary>
         /// <param name="imagePath">Name of Image to be binarized</param>
         /// <param name="height">Height of Binarized Image</param>
@@ -241,7 +242,7 @@ namespace ConsoleApp
             return intArray;
         }
         /// <summary> Modified by Long Nguyen
-        ///           Pulling out SDRs after HPC fires a STABLE event when training the SP with list of patterns
+        /// Pulling out SDRs after HPC fires a STABLE event when training the SP with list of patterns
         /// </summary>
         /// <param name="cfg"></param> Spatial Pooler configuration by HtmConfig style
         /// <param name="inputValues"></param> Binary input vector (pattern) list
