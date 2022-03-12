@@ -102,17 +102,17 @@ namespace ConsoleApp
 
             string predictedLabel = PredictLabel(sdrOfInputImage, sdrs);
             Console.WriteLine($"\n============Input Image Prediction============");
-            Console.WriteLine($"\n>>Prediction status: {predictedLabel}"); //Displaying the label of maximum similarity with SDR of Input Images
+            Console.WriteLine($"\n>>Prediction status: {predictedLabel}"); //Displaying the prediction status obtained from Method "PredictLabel"
 
             /// <summary>
+            /// Prediction Code done by Group CodeCube (Alam, Aiman & Soundarya)
             /// The method PredictLabel compares the SDR of input image (testing image) with the SRDs 
             /// of the images used for learning and outputs the average similarity of Testing Image with 
-            /// Images under each Learning Class (Label) and classify the its Label with Maximum Similarity
+            /// Images under each Learning Class (Label) and classify its Label with Maximum Similarity
             /// </summary>
             string PredictLabel(int[] sdrOfInputImage, Dictionary<string, int[]> sdrs)
             {
                 double similarityWithEachSDR = 0;
-                double similarityWithPreviousSDR = 0;
                 double temp1 = 0;
                 string label = "";
                 foreach (KeyValuePair<string, List<string>> secondEntry in inputsPath)
@@ -139,7 +139,7 @@ namespace ConsoleApp
                     {
                         temp1 = sumOfSimilarities;
                         label = $"{"The image is predicted as " + secondEntry.Key}";
-                        if (temp1<50.0)
+                        if (temp1<50.0) //This depends and selected based on the HTM parameters given in htmconfig.json file
                         {
                             label = "The similarity of Input Image is too low, hence the given image might not belong to the Learning Dataset";
                         }
