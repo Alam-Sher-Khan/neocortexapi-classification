@@ -1,9 +1,7 @@
-Group Name: Team Codecube 
-Team members: * Alam Sher Khan
-              * Aiman Zehra
-              * Soundarya Talawai
+### Group Name: Team Codecube 
+### Team members: Alam Sher Khan, Aiman Zehra, Soundarya Talawai
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------# **Project Description** 
+# **Project Description** 
 
 ## **Analyse Image Classification**
 In the previous work at the university an Image Classification solution has been implemented. Our task is to implement a program that uses the existing solution and start a training of learning images. The image dataset which we have used in this project is MNIST Database images. Our task is to change various learning parameters and to find the best fit that shows image classification. Most important learning parameters are: Global/Local Inhibition, Potential Radius, Local Area Density and NumofActiveColumnsPerInArea.
@@ -53,3 +51,4 @@ Run the code and the desired output will be displayed
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Goals Achieved/Progress
 All the objectives described in the project description has been achieved successfully, test cases are prepared, code is completed and expected output is achieved, Final report documentation of the project is in progress. We are also working on project to provide more improvised solution and conducting experiments to provide more better results and prediction.
+
