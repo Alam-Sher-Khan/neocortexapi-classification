@@ -3,7 +3,7 @@
 
 # **Project Description** 
 
-## **Analyse Image Classification**
+## **Analyse Image Classification of MNIST Dataset**
 In the previous work at the university an Image Classification solution has been implemented. Our task is to implement a program that uses the existing solution and start a training of learning images. The image dataset which we have used in this project is MNIST Database images. Our task is to change various learning parameters and to find the best fit that shows image classification. Most important learning parameters are: Global/Local Inhibition, Potential Radius, Local Area Density and NumofActiveColumnsPerInArea.
 We have to demonstrate how these parameters influence the learning. Our code must provide the learning code and prediction code. After learning user should use your code and test the quality of learning. For example, the user after learning enter the image “table”. The prediction code provide a set of predicting results like: “Table – 87%, chair 7%, light - 3%”.
 
@@ -31,7 +31,7 @@ Example
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Steps to setup the Learning and Prediction Code:
-## Step1 - 
+## Step1 - (To setup input folder for learning/training of images)
 The imagesets(MNIST) are stored inside "InputFolder/".
 
 ![Capture](https://user-images.githubusercontent.com/93146590/157983651-dd5b38c8-463a-4310-b118-3b5e2df73f06.JPG)
@@ -40,13 +40,13 @@ Each Imageset is stored inside a folder whose name is the set's label.
 
 ![Capture](https://user-images.githubusercontent.com/93146590/157983987-0cdfe35a-811e-49f2-b580-ec515889c2a4.JPG)
 
-## Step2 - 
+## Step2 - (To setup image for prediction code)
 Select an Image and give the location path of the image in the prediction code.
 
 Example:
 ![Capture](https://user-images.githubusercontent.com/93146590/158025162-08efce1d-ac9d-49f0-b12b-b273312cd706.JPG)
 
-Run the code and the desired output will be displayed
+After running the code at the best HTM parameters obtained after experimenting in the learning phase, we can get the prediction status of any input image.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Goals Achieved/Progress
