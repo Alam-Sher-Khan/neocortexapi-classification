@@ -50,5 +50,4 @@ After running the code at the best HTM parameters obtained after experimenting i
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Goals Achieved/Progress
-All the objectives described in the project description has been achieved successfully, test cases are prepared, code is completed and expected output is achieved, Final report documentation of the project is in progress. We are also working on project to provide more improvised solution and conducting experiments to provide more better results and prediction.
-
+So far several experiments have been done to get the best correlation matrix in the learning phase and prediction code has been generated based on the initial analysis in the learning phase. We are conducting more experiments to further analyse the effects of other HTM Parameters on learning of MNIST images and will try to implement a better prediction code after conducting further experiments.
