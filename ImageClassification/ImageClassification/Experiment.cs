@@ -70,27 +70,73 @@ namespace ConsoleApp
             var classes = inputsPath.Keys.ToList();
             //helperFunc.printSimilarityMatrix(listCorrelation, "micro", classes);
             //helperFunc.printSimilarityMatrix(listCorrelation, "macro", classes);
-            helperFunc.printSimilarityMatrix(listCorrelation, "both", classes);
-            //Console.WriteLine(listInputCorrelation["330__332"]);
+            helperFunc.printSimilarityMatrix(listCorrelation, "both", classes); //Prints output similarity at console
+            Console.WriteLine(listInputCorrelation["330__332"]); //Prints input similarity at console (Between two images)
 
 
             // Prediction Code
-            // input image encoding
-            //int[] encodedInputImage = ReadImageData("C:/Users/aiman/source/repos/neocortexapi-classification/ImageClassification/ImageClassification/InputFolder/Nine/9_pic1.png", width,height); 
-            //var temp1 = cortexLayer.Compute(encodedInputImage, false);
+            // input image encoding,path of image to be provided for prediction
+            int[] encodedInputImage = ReadImageData("C:/Users/aiman/Downloads/feathers.png", width, height);
+            var temp1 = cortexLayer.Compute(encodedInputImage, false);
+            // This is a general way to get the SpatialPooler result from the layer.
+            var activeColumns = cortexLayer.GetResult("sp") as int[];
+            var sdrOfInputImage = activeColumns.OrderBy(c => c).ToArray(); //SDR of iput image
 
-            //This is a general way to get the SpatialPooler result from the layer.
-            //var activeColumns = cortexLayer.GetResult("sp") as int[];
+            string predictedLabel = PredictLabel(sdrOfInputImage, sdrs);
+            Console.WriteLine($"\n============Input Image Prediction============");
+            Console.WriteLine($"\n>>Prediction status: {predictedLabel}"); //Displaying the prediction status obtained from Method "PredictLabel"
 
-            //var sdrOfInputImage = activeColumns.OrderBy(c => c).ToArray();
-            
-            // Function that needs implementation
-            //string predictedLabel =  PredictLabel(sdrOfInputImage, sdrs);
+            /// <summary>
+            /// Prediction Code done by Group CodeCube (Alam, Aiman & Soundarya)
+            /// The method PredictLabel compares the SDR of input image (testing image) with the SRDs 
+            /// of the images used for learning and outputs the average similarity of Testing Image with
+            /// Images under each Learning Class (Label) and classify its Label with Maximum Similarity
+            /// 
+            // </summary>
+            string PredictLabel(int[] sdrOfInputImage, Dictionary<string, int[]> sdrs)
+            {
+                double similarityWithEachSDR = 0;
+                double similarityWithPreviousSDR = 0;
+                double temp1 = 0;
+                string label = "";
+                foreach (KeyValuePair<string, List<string>> secondEntry in inputsPath)
+                {
+                    double sumOfSimilarities = 0; //sum of similarities with images in Same Class(Label)
 
-            //Console.WriteLine($"The image is predicted as {predictedLabel}");
-            //Console.ReadLine();
+                    // loop of each folder in input folder
+                    var classLabel2 = secondEntry.Key;
+                    var filePathList2 = secondEntry.Value;
+                    var numberOfImages2 = filePathList2.Count;
+                    for (int j = 0; j < numberOfImages2; j++) // loop of each image in each category of inputs
+                    {
+                        if (!sdrs.TryGetValue(filePathList2[j], out int[] sdr2)) continue;
 
-        }
+                        //calculating the similarity between SDR of Input Images with the SDR of the current iterated image (Learning Dataset)
+                        similarityWithEachSDR = MathHelpers.CalcArraySimilarity(sdrOfInputImage, sdr2);
+                        sumOfSimilarities += similarityWithEachSDR;
+                    }
+                    //calculating the Average similarity of the Input Image with Learning Images in each Category (Label)
+                    sumOfSimilarities /= numberOfImages2;
+                    if (sumOfSimilarities > temp1)
+                    {
+                        temp1 = sumOfSimilarities;
+                        label = $"{"The image is predicted as " + secondEntry.Key}";
+                        if (temp1 < 50.0) //This depends and selected based on the HTM parameters given in htmconfig.json file
+                        {
+                            label = "The similarity of Input Image is too low, hence the given image might not belong to the Learning Dataset";
+                        }
+
+                    }
+                    Console.WriteLine("\n> The Input Image is similar to Digit" + secondEntry.Key + " by " + sumOfSimilarities + " %");
+                }
+                //Display the highest similarity  of the Input Image with the training category
+                Console.WriteLine("\n Highest Similarity is: " + temp1 + " % ");
+
+                return label;
+
+            }
+
+    }
 
         private Tuple<Dictionary<string, int[]>, Dictionary<string, List<string>>> imageBinarization(List<string> directories, int width, int height)
         {
