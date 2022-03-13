@@ -45,7 +45,7 @@ After we got the parameters which shows the best correlation matrix, we have add
 
 **Testing Image**
 
-![Capture](https://user-images.githubusercontent.com/93146590/158060121-8eb0c18d-a2cb-4d47-b9bf-b8ed25de122b.JPG)
+![Capture](https://user-images.githubusercontent.com/93146590/158060200-d458aae5-4642-478e-b36e-99c098d82588.JPG)
 
 **Learning Dataset**
 
@@ -58,25 +58,25 @@ After we got the parameters which shows the best correlation matrix, we have add
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 3. Steps to setup the Learning and Prediction Code:
 ### Step1 - (To setup input folder for learning/training of images)
-Images must be copied in the following folder structure along with the application and the config json: (https://github.com/Alam-Sher-Khan/neocortexapi-classification/tree/Aiman/ImageClassification/ImageClassification/InputFolder)
+* Images must be copied in the following folder structure along with the application and the config json: (https://github.com/Alam-Sher-Khan/neocortexapi-classification/tree/Aiman/ImageClassification/ImageClassification/InputFolder)
 
 ![Capture](https://user-images.githubusercontent.com/93146590/158056620-58a8ea39-6be9-473e-b7e5-ad398e2504e5.JPG)
 
-The imagesets(MNIST) are stored inside "InputFolder/".
+* The imagesets(MNIST) are stored inside "InputFolder/".
 
 ![Capture](https://user-images.githubusercontent.com/93146590/157983651-dd5b38c8-463a-4310-b118-3b5e2df73f06.JPG)
 
-Each Imageset is stored inside a folder whose name is the set's label.
+* Each Imageset is stored inside a folder whose name is the set's label.
 
 ![Capture](https://user-images.githubusercontent.com/93146590/157983987-0cdfe35a-811e-49f2-b580-ec515889c2a4.JPG)
 
 ### Step2 - (To setup image for prediction code)
-Select an Image and give the location path of the image in the prediction code (https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/Aiman/ImageClassification/ImageClassification/Experiment.cs#L79)
+* Select an Image and give the location path of the image in the prediction code (https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/Aiman/ImageClassification/ImageClassification/Experiment.cs#L79)
 
 Example:
 ![Capture](https://user-images.githubusercontent.com/93146590/158025162-08efce1d-ac9d-49f0-b12b-b273312cd706.JPG)
 
-HTM setting of the project can be inputted to the program by means of a .json file (https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/Aiman/ImageClassification/ImageClassification/htmconfig.json) . Various experiments have been conducted with changes of parameters in the json file
+* HTM setting of the project can be inputted to the program by means of a .json file (https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/Aiman/ImageClassification/ImageClassification/htmconfig.json) . Various experiments have been conducted with changes of parameters in the json file
 After running the code at the best HTM parameters obtained after experimenting in the learning phase, we can get the prediction status of any input image.
 
 ## 4. Working Process
