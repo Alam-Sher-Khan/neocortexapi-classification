@@ -71,12 +71,12 @@ namespace ConsoleApp
             //helperFunc.printSimilarityMatrix(listCorrelation, "micro", classes);
             //helperFunc.printSimilarityMatrix(listCorrelation, "macro", classes);
             helperFunc.printSimilarityMatrix(listCorrelation, "both", classes); //Prints output similarity at console
-            Console.WriteLine(listInputCorrelation["330__332"]); //Prints input similarity at console (Between two images)
+            //Console.WriteLine(listInputCorrelation["330__332"]); //Prints input similarity at console (Between two images)
 
 
             // Prediction Code
             // input image encoding,path of image to be provided for prediction
-            int[] encodedInputImage = ReadImageData("C:/Users/aiman/Downloads/feathers.png", width, height);
+            int[] encodedInputImage = ReadImageData("C:/Users/aiman/source/9_pic1.png", width, height);
             var temp1 = cortexLayer.Compute(encodedInputImage, false);
             // This is a general way to get the SpatialPooler result from the layer.
             var activeColumns = cortexLayer.GetResult("sp") as int[];
@@ -280,7 +280,7 @@ namespace ConsoleApp
             cortexLayer.HtmModules.Add("sp", sp);
 
             // Learning process will take 1000 iterations (cycles)
-            int maxSPLearningCycles = 10;
+            int maxSPLearningCycles = 1000;
 
             // Save the result SDR into a list of array
             Dictionary<string, int[]> outputValues = new Dictionary<string, int[]>();
