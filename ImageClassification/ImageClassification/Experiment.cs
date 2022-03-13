@@ -78,7 +78,7 @@ namespace ConsoleApp
             // input image encoding,path of image to be provided for prediction
             int[] encodedInputImage = ReadImageData("C:/Users/aiman/source/9_pic1.png", width, height);
             var temp1 = cortexLayer.Compute(encodedInputImage, false);
-            // This is a general way to get the SpatialPooler result from the layer.
+            // This is a general way to get the SpatialP ooler result from the layer.
             var activeColumns = cortexLayer.GetResult("sp") as int[];
             var sdrOfInputImage = activeColumns.OrderBy(c => c).ToArray(); //SDR of iput image
 
