@@ -1,4 +1,5 @@
 Group Name: Team CodeCube
+
 Team members: Alam Sher Khan (Matriculation number: 1387324), Aiman Zehra (Matriculation number: 1388996), Soundarya Talawai (Matriculation number: 1390133)
 
 # **Project Description** 
@@ -24,7 +25,7 @@ After we got the parameters which shows the best correlation matrix, we have add
 3) The prediction code will calculate the Highest similarity in between the input images of the label(Dataset).
 4) The prediction code will give the name of the label which is being predicted with the highest similarity.
 
-### **Example
+### Example
 
 ### **Case1** - When testing image is similar to the learning dataset
 
@@ -36,21 +37,21 @@ After we got the parameters which shows the best correlation matrix, we have add
 
 ![Capture](https://user-images.githubusercontent.com/93146590/158055986-143d49d7-793a-4b1f-9cb0-907fea8865a5.JPG)
 
-**Output Result in Case1**
+**Output Result in Case 1**
 
-![Capture](https://user-images.githubusercontent.com/93146590/157980009-4d188b7d-0a7c-4971-86bf-248da9960316.JPG)
+![Capture](https://user-images.githubusercontent.com/93146590/158058910-52c1de99-bc2e-45ee-8b6d-5f54a9ee2cd0.JPG)
 
 ### **Case2** - When testing image is completely different from the learning dataset
 
 **Testing Image**
 
-![Capture](https://user-images.githubusercontent.com/93146590/158056131-9f60b954-f767-48b6-8eda-51d5fd7a9d7e.JPG)
+![Capture](https://user-images.githubusercontent.com/93146590/158060121-8eb0c18d-a2cb-4d47-b9bf-b8ed25de122b.JPG)
 
 **Learning Dataset**
 
 ![Capture](https://user-images.githubusercontent.com/93146590/158055986-143d49d7-793a-4b1f-9cb0-907fea8865a5.JPG)
 
-**Output Result in Case2**
+**Output Result in Case 2**
 
 ![Capture](https://user-images.githubusercontent.com/93146590/158025416-cb7330c9-666b-47a2-802d-ef4c5f967e09.JPG)
 
@@ -58,6 +59,7 @@ After we got the parameters which shows the best correlation matrix, we have add
 ## 3. Steps to setup the Learning and Prediction Code:
 ### Step1 - (To setup input folder for learning/training of images)
 Images must be copied in the following folder structure along with the application and the config json: (https://github.com/Alam-Sher-Khan/neocortexapi-classification/tree/Aiman/ImageClassification/ImageClassification/InputFolder)
+
 ![Capture](https://user-images.githubusercontent.com/93146590/158056620-58a8ea39-6be9-473e-b7e5-ad398e2504e5.JPG)
 
 The imagesets(MNIST) are stored inside "InputFolder/".
@@ -74,7 +76,7 @@ Select an Image and give the location path of the image in the prediction code (
 Example:
 ![Capture](https://user-images.githubusercontent.com/93146590/158025162-08efce1d-ac9d-49f0-b12b-b273312cd706.JPG)
 
-HTM setting of the project can be inputted to the program by means of a .json file how to (https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/Aiman/ImageClassification/ImageClassification/htmconfig.json) . Various experiments have been conducted with changes of parameters in the json file
+HTM setting of the project can be inputted to the program by means of a .json file (https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/Aiman/ImageClassification/ImageClassification/htmconfig.json) . Various experiments have been conducted with changes of parameters in the json file
 After running the code at the best HTM parameters obtained after experimenting in the learning phase, we can get the prediction status of any input image.
 
 ## 4. Working Process
