@@ -315,24 +315,7 @@ namespace ConsoleApp
             }
             return (outputValues,cortexLayer);
         }
-        public string PredictLabel(int[] sdrOfInputImage, Dictionary<string, int[]> sdrs)
-        {
-            string label = "Couldnot able to predict the label";
-            foreach (var k1 in sdrs)
-            {
-                Boolean isArrayEqual = true;
-                int[] newarray = k1.Value;
-                isArrayEqual = sdrOfInputImage.SequenceEqual(newarray);
-                if (isArrayEqual)
-                {
-                    label = k1.Key.ToString();
-                    string[] labelarray = label.Split('\\');
-                    label = labelarray[10];
-                    return label;
-                }
-            }
-            return label;
-        }
+       
     }
 }
 
