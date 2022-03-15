@@ -1,6 +1,3 @@
-Group Name: Team CodeCube
-
-Team members: Alam Sher Khan (Matriculation number: 1387324), Aiman Zehra (Matriculation number: 1388996), Soundarya Talawai (Matriculation number: 1390133)
 
 # **Project Description** 
 
