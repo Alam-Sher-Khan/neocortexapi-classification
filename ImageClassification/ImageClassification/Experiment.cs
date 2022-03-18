@@ -165,7 +165,7 @@ namespace ConsoleApp
                         temp1 = avgSimilarity;
 
                         label = $"{"The image is predicted as " + secondEntry.Key}";
-                        if (temp1 < 60.0) //This depends and selected based on the HTM parameters given in htmconfig.json file
+                        if (temp1 < 65.0) //This depends and selected based on the HTM parameters given in htmconfig.json file
                         {
                             label = "The similarity of Input Image is too low, hence the given image might not belong to the Learning Dataset";
                         }
