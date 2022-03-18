@@ -8,15 +8,26 @@ using Daenet.ImageBinarizerLib.Entities;
 
 namespace ConsoleApp
 {
+    /// <summary>
+    /// Class Experiment contains methods for setting HTM Parameters
+    /// and binarization of the images
+    /// </summary>
+    
     internal class Experiment
     {
         HtmConfig htmConfig;
         ArgsConfig expConfig;
+
         public Experiment( ArgsConfig config)
         {
             expConfig = config;
             htmConfig = config.htmConfig;
         }
+
+        /// <summary>
+        /// This method binarizes input images and works as an Encoder by
+        /// encoding Input Images into arrays of 0 & 1.
+        /// </summary>
 
         public void run()
         { 
@@ -26,13 +37,16 @@ namespace ConsoleApp
             // By default it only returns subdirectories one level deep. 
             var directories = Directory.GetDirectories(expConfig.inputFolder).ToList();
 
-            (   Dictionary<string, int[]> binaries, // List of Binarized images
+            // The key of the dictionary helps to keep track of which class the SDR belongs to
+            (Dictionary<string, int[]> binaries, // List of Binarized images
                 Dictionary<string, List<string>> inputsPath // Path of the list of images found in the given folder
             )   = imageBinarization(directories, width, height);
 
-            // The key of the dictionary helps to keep track of which class the SDR belongs to
-            
+
+            // For training the Spatial Pooler with Black and White Images
             (Dictionary<string, int[]> sdrs,var cortexLayer) = SPTrain(htmConfig, binaries);
+
+            // For training Spatial Pooler with colored images
             //(Dictionary<string, int[]> sdrs2, var cortexLayer2) = SPTrain(htmConfig, binaries, colorThreshold );
 
             HelpersTemp helperFunc = new HelpersTemp();
@@ -60,8 +74,10 @@ namespace ConsoleApp
                                 string fileNameOfSecondImage = Path.GetFileNameWithoutExtension(filePathList2[j]);
                                 string temp = $"{classLabel + fileNameofFirstImage}__{classLabel2 + fileNameOfSecondImage}";
 
-                                listCorrelation.Add(temp, (MathHelpers.CalcArraySimilarity(sdr1, sdr2)));
-                                listInputCorrelation.Add(temp, Math.Round(MathHelpers.CalcArraySimilarity(binaries[filePathList[i]].IndexWhere((el) => el == 1), binaries[filePathList2[j]].IndexWhere((el) => el == 1)),2));
+                                 //For output similarity calculation
+                                 listCorrelation.Add(temp, (MathHelpers.CalcArraySimilarity(sdr1, sdr2)));
+                                 //For input similarity calculation (within same folder)
+                                 listInputCorrelation.Add(temp, Math.Round(MathHelpers.CalcArraySimilarity(binaries[filePathList[i]].IndexWhere((el) => el == 1), binaries[filePathList2[j]].IndexWhere((el) => el == 1)),2));
                         }
                     }
                 }
@@ -76,7 +92,7 @@ namespace ConsoleApp
 
             // Prediction Code
             // input image encoding,path of image to be provided for prediction
-            int[] encodedInputImage = ReadImageData("C:/Users/aiman/source/9_pic1.png", width, height);
+            int[] encodedInputImage = ReadImageData("C:/Users/aiman/source/repos/Image-classification/ImageClassification/Test Images/feather.png", width, height);
             var temp1 = cortexLayer.Compute(encodedInputImage, false);
 
             // This is a general way to get the SpatialP ooler result from the layer.
@@ -149,7 +165,7 @@ namespace ConsoleApp
                         temp1 = avgSimilarity;
 
                         label = $"{"The image is predicted as " + secondEntry.Key}";
-                        if (temp1 < 50.0) //This depends and selected based on the HTM parameters given in htmconfig.json file
+                        if (temp1 < 60.0) //This depends and selected based on the HTM parameters given in htmconfig.json file
                         {
                             label = "The similarity of Input Image is too low, hence the given image might not belong to the Learning Dataset";
                         }
@@ -316,7 +332,7 @@ namespace ConsoleApp
             cortexLayer.HtmModules.Add("sp", sp);
 
             // Learning process will take 1000 iterations (cycles)
-            int maxSPLearningCycles = 1;
+            int maxSPLearningCycles = 1000;
 
             // Save the result SDR into a list of array
             Dictionary<string, int[]> outputValues = new Dictionary<string, int[]>();
