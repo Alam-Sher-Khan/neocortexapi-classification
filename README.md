@@ -48,8 +48,7 @@ After we got the parameters which shows the best correlation matrix, we have add
 ![Capture](https://user-images.githubusercontent.com/93146590/158055986-143d49d7-793a-4b1f-9cb0-907fea8865a5.JPG)
 
 **Output Result in Case 2**
-
-![Capture](https://user-images.githubusercontent.com/93146590/158025416-cb7330c9-666b-47a2-802d-ef4c5f967e09.JPG)
+![Formatting the display of results](https://user-images.githubusercontent.com/93139817/158536159-2456d7de-9cc5-4bee-8d08-07f6ea033f23.PNG)
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 3. Steps to setup the Learning and Prediction Code:
