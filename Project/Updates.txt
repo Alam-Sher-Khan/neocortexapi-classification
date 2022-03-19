@@ -17,11 +17,12 @@
 - Started with the documentation of the project.
 - Collecting data, and information in order to document the result.
 - Plotting graph and finding the value relation between input and output correlation is in progress.
+- After removing the color threshold and keeping the InputDimensions Parameter in htmconfig json file as 28x28, efficient result is obtained.
 
 
 -Latest Progress
 1) We have been able to find the parameters at which the correlation matrix is best.
-2) Prediction code is patched and its able to predict the right label.
+2) Prediction code is completed and it is able to predict the right label.
 3) Input Similarity is obtained correctly.
 4) Documentation of the project is in progess and results are recorded.
 
