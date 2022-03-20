@@ -92,7 +92,7 @@ namespace ConsoleApp
 
             // Prediction Code
             // input image encoding,path of image to be provided for prediction
-            int[] encodedInputImage = ReadImageData("C:/Users/aiman/Desktop/TestFolder/blur.png",width,height);
+            int[] encodedInputImage = ReadImageData("C:/Users/aiman/Desktop/TestFolder/feather.png",width,height);
             var temp1 = cortexLayer.Compute(encodedInputImage, false);
 
             // This is a general way to get the SpatialPooler result from the layer.
@@ -149,9 +149,9 @@ namespace ConsoleApp
                     //calculating the Average similarity of the Input Image with Learning Images in each Category (Label)
                     avgSimilarity = Math.Round(sumOfSimilarities /= numberOfImages2,2);
 
-                    if (avgSimilarity > temp1)
+                    if (maxSimilarity > temp1)
                     {
-                        temp1 = avgSimilarity;
+                        temp1 = maxSimilarity;
                         label = $"{"The image is predicted as " + secondEntry.Key}";
                         if (temp1<60.0) //This depends and selected based on the HTM parameters given in htmconfig.json file
                         {
