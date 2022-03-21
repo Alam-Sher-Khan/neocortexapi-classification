@@ -106,6 +106,8 @@ namespace ConsoleApp
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"\n>>Prediction status: {predictedLabel}"); //Displaying the prediction status obtained from Method "PredictLabel"
             Console.ForegroundColor = ConsoleColor.White;
+            string path = Directory.GetCurrentDirectory();
+            Console.WriteLine("The current directory is", path);
             /// <summary>
             /// Prediction Code done by Group CodeCube (Alam, Aiman & Soundarya)
             /// The method PredictLabel compares the SDR of input image (testing image) with the SRDs 
