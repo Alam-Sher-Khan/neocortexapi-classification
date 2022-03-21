@@ -92,9 +92,9 @@ namespace ConsoleApp
 
             // Prediction Code
             // input image encoding,path of image to be provided for prediction
-            int[] encodedInputImage = ReadImageData("C:/Users/aiman/source/repos/Image-classification/ImageClassification/Test Images/feather.png", width, height);
+            int[] encodedInputImage = ReadImageData("C:/Users/aiman/source/five.png", width, height);
             var temp1 = cortexLayer.Compute(encodedInputImage, false);
-
+        
             // This is a general way to get the SpatialP ooler result from the layer.
             var activeColumns = cortexLayer.GetResult("sp") as int[];
 
@@ -165,7 +165,7 @@ namespace ConsoleApp
                         temp1 = avgSimilarity;
 
                         label = $"{"The image is predicted as " + secondEntry.Key}";
-                        if (temp1 < 65.0) //This depends and selected based on the HTM parameters given in htmconfig.json file
+                        if (temp1 < 85.0) //This depends and selected based on the HTM parameters given in htmconfig.json file
                         {
                             label = "The similarity of Input Image is too low, hence the given image might not belong to the Learning Dataset";
                         }
