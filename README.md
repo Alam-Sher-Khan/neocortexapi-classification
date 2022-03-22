@@ -1,12 +1,41 @@
-# **Project Description**
+## **Project Description**
 
 ## 1. **Objective: Analyse Image Classification of MNIST Dataset**
-In the previous work at the university an Image Classification solution has been implemented. Our task is to implement a program that uses the existing solution and start a training of learning images. The image dataset which we have used in this project is MNIST Database images. Our task is to change various learning parameters and to find the best fit that shows image classification. Most important learning parameters are: Global/Local Inhibition, Potential Radius, Local Area Density and NumofActiveColumnsPerInArea.
-We have to demonstrate how these parameters influence the learning. Our code should provide the learning code and prediction code. After learning user should use our code and test the quality of learning. For example, the user after learning enter the image “table”. The prediction code provide a set of predicting results like: “Table – 87%, chair 7%, light - 3%”.
+* Our First Objective is to examine the HTM parameters (lobal/Local Inhibition, Potential Radius, Local Area Density and NumofActiveColumnsPerInArea.) which results in the highest similarity for the image classification of MNIST (Modified National Institute of Standards and Technology) dataset.
+* We also have to provide the prediction code for image classification so that after learning, system can classify the image based on learning.
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## 2. **Approach**
 
-## 2. **Our Approach**
+### MNIST Dataset
+The MNIST database (Modified National Institute of Standards and Technology database) is a large database of handwritten digits that is commonly used for training various image processing systems.The database is also widely used for training and testing in the field of machine learning.The MNIST database contains 60,000 training images and 10,000 testing images.
+
+**MNIST Images can be extracted using extracted using 7zip https://www.7-zip.org/
+
+![MNIST-0000000001-2e09631a_09liOmx](https://user-images.githubusercontent.com/93146590/159464591-f38d0df9-eeb0-4b53-b6ae-7e564015a3a5.jpg) 
+
+The goal of this project is to implement a program that uses the existing solution as a library and find the spatial pooler parameter values which influence the learning of images resulting in the best correlation matrix and can also predict any input image based on the learning in HTM.
+
+
+![image](https://user-images.githubusercontent.com/93146590/159476992-ceecfa2c-d0db-4158-a70b-3671b286137f.png)
+  ![image](https://user-images.githubusercontent.com/93146590/159476931-d066b88b-1ded-4243-9e58-1ecd6e3ddaf4.png)  ![image](https://user-images.githubusercontent.com/93146590/159477331-8178b739-c6d9-407a-bf4f-d3931bc536fd.png)  ![image](https://user-images.githubusercontent.com/93146590/159477405-6b03f0ad-8911-41c1-b08d-a2aaf20685f7.png) ![image](https://user-images.githubusercontent.com/93146590/159478497-af3b67c8-22f9-4650-af17-f2ea57e71e30.png)
+  ![image](https://user-images.githubusercontent.com/93146590/159478366-66c57685-9255-48c3-a27f-4c8745cb9a3f.png) 
+  
+  ![image](https://user-images.githubusercontent.com/93146590/159479899-39eccced-86f3-4395-a8e8-19b5b79772d7.png) ![image](https://user-images.githubusercontent.com/93146590/159480218-81369a61-2a2b-490e-a657-fb7ddf970880.png) ![image](https://user-images.githubusercontent.com/93146590/159480428-18ceb06d-c58b-4a85-8d83-dc9072988089.png) ![image](https://user-images.githubusercontent.com/93146590/159480681-3ccaf624-066b-4d51-a43c-6f930dd642a7.png) ![image](https://user-images.githubusercontent.com/93146590/159480865-41d2ea90-6c1e-4b63-857c-d00bcc578341.png) ![image](https://user-images.githubusercontent.com/93146590/159481213-355c99f6-398c-4130-af54-2669404ad30a.png)
+  
+  ![image](https://user-images.githubusercontent.com/93146590/159482675-6903ea10-15ac-4168-b772-a31c2b41be77.png) ![image](https://user-images.githubusercontent.com/93146590/159483536-f1baa93b-4ce6-461c-8b5c-c1264a1e607b.png) ![image](https://user-images.githubusercontent.com/93146590/159484243-a54df1f7-37dd-4bf1-a9b7-8ca00c0e0984.png) ![image](https://user-images.githubusercontent.com/93146590/159484423-b07bc98a-21e0-4a1d-aa26-ed262e3aae28.png)
+![image](https://user-images.githubusercontent.com/93146590/159484590-71c62cd3-a76c-4e85-a990-dbb76639b358.png) ![image](https://user-images.githubusercontent.com/93146590/159484821-f32aa6fe-da97-4cf0-95a2-6b0677fbe6ec.png)
+
+![image](https://user-images.githubusercontent.com/93146590/159485005-5aa702e2-a31c-4535-9b7e-5295318f927a.png) ![image](https://user-images.githubusercontent.com/93146590/159485294-f0489df7-a20f-4bf7-a3ea-cf8b482cb82a.png)
+
+
+
+![Capture](https://user-images.githubusercontent.com/93146590/159493693-188786ef-9da3-4496-95d5-271fc9e42b9e.JPG)
+
+
+
+
+## 2. **Our Experiment**
 
 ### 1 - To find the HTM Parameters which gives the best fit that shows image classification
 We have changed various parameters Global/Local Inhibition, Potential Radius, Local Area Density between various images of MNIST datasets. After conducting various experiments we have been able to find the parameters at which we get the least overlapping in between micro and macro and thus the best correlation matrix.
