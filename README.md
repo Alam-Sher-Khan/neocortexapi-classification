@@ -63,7 +63,7 @@ The prediction code added will help to find the precentage of similarity between
 ### Step2 - To setup Test folder for testing the prediction of images
 Testing images must be copied in the following folder structure
 
-![Test Folder Structure](https://user-images.githubusercontent.com/93146590/160164937-36b9fb3a-c86e-416a-b8ee-950d94a2b3b1.PNG)
+![Test Folder Structure](https://user-images.githubusercontent.com/93139817/160196610-23590fc5-bfcb-490a-ab21-92079c307c8b.PNG)
 
 **Below is the link of the prediction code implemented :** 
 https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/4faab23d94c1412130090b1a6281362441010a7a/MySEProject/ImageClassification/Experiment.cs#L97
