@@ -79,5 +79,7 @@ https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/4faab23d94c14
 * **Our prediction code is efficient as it can predict any number of images at the same execution of the code which saves time.**
 * Our **prediction code automatically fetches the absolute path of the testing images in the TestFolder** so it does not require the paths to be entered manually in the code.
 
+![Capture](https://user-images.githubusercontent.com/93146590/160189988-db37a83d-132d-41ca-a435-8e2d6f9c20ef.JPG)
+
 ## 5. In-Progress
 * We are conducting more experiments to further analyse the effects of other HTM Parameters on learning of MNIST images.
