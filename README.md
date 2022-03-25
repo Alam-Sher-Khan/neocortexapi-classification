@@ -1,6 +1,6 @@
 ## **Project Description**
 
-## 1. **Objective: Analyse Image Classification of MNIST Dataset**
+## 1. NeocortexApi Analyse Image Classification of MNIST Dataset**
 * Our First Objective is to examine the HTM parameters (lobal/Local Inhibition, Potential Radius, Local Area Density and NumofActiveColumnsPerInArea.) which results in the highest similarity for the image of same label/class and lowest similarity between images of different classes of MNIST (Modified National Institute of Standards and Technology) dataset.
 
 * We also have to provide the prediction code for image classification so that after learning, system can classify any given testing image based on the training dataset.
@@ -9,12 +9,9 @@
 ### MNIST Dataset
 The MNIST database (Modified National Institute of Standards and Technology database) is a large database of handwritten digits that is commonly used for training various image processing systems.The database is also widely used for training and testing in the field of machine learning.The MNIST database contains 60,000 training images and 10,000 testing images.
 
-**MNIST Images can be extracted using extracted using 7zip https://www.7-zip.org/
-
-![image](https://user-images.githubusercontent.com/93146590/159540392-5db930a4-44c1-49ab-8ab9-08518bfc0420.png)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## 2. **Approach**
+## 2. **Project Progress**
 
 The goal of this project is to implement a program that uses the existing solution as a library and find the spatial pooler parameter values which influence the learning of images resulting in the best correlation matrix and can also predict any input image based on the learning in HTM.
 When started the application will load images and start the training process. The training process runs in following steps.
@@ -22,7 +19,7 @@ When started the application will load images and start the training process. Th
 **(1) Convert The Images to binary array via binarization**: 
 The Binarization Library was developed as an open source project at Daenet.The current implementation uses a color threshold of 200 for every color in a 8bit-RGB scale.It is responsible for encoding the images in binary form after training of the images.(https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/Alam/ImageClassification/ImageClassification/InputFolder/One/1_a1.txt)
 
-![image](https://user-images.githubusercontent.com/93146590/159535274-cf1ae555-4964-4944-b988-76f8cf24e2db.png)
+![Capture](https://user-images.githubusercontent.com/93146590/160106040-263b7989-4a64-4556-aeb8-313cc8e08147.JPG)
 
 **(2) Learn spatial patterns stored in images with the Spatial Pooler(SP)**: 
 SP first iterates through all images until the stable state is entered. SP iterate through all the images as it learns. The essential function of spatial pooling is to form an SDR of the inputs. The output of the spatial pooler is as a binary vector, which represents the activation of columns in response to the current input.The SP consists of three phases, namely overlap, inhibition, and learning.
@@ -43,7 +40,7 @@ The prediction code added will help to find the precentage of similarity between
 ![image](https://user-images.githubusercontent.com/93146590/159539891-125feb98-f7c4-4bc1-8cff-73acc8f1f05c.png)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## 3. Steps to setup the Learning and Prediction Code:
+## 3. How to use the classifier?
 ### Step1 - (To setup input folder for learning/training of images)
 * Images must be copied in the following folder structure along with the application and the config json: (https://github.com/Alam-Sher-Khan/neocortexapi-classification/tree/Alam/ImageClassification/ImageClassification/InputFolder)
 
@@ -58,13 +55,8 @@ The prediction code added will help to find the precentage of similarity between
 ![image](https://user-images.githubusercontent.com/93146590/159564704-a33729dd-5e81-4831-8604-c9e98d766fae.png)
 
 ### Step2 - (To setup image for prediction code)
-**Select an Image and give the location path of the image in the prediction code** (https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/Alam/ImageClassification/ImageClassification/Experiment.cs#L95)
-
-Example:
-![image](https://user-images.githubusercontent.com/93146590/159565503-f10609a4-bda9-442d-9068-d31493b10556.png)
-
-**HTM setting of the project can be inputted to the program by means of a .json file** (https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/Alam/ImageClassification/ImageClassification/htmconfig.json) . Various experiments have been conducted with changes of parameters in the json file
-After running the code at the best HTM parameters obtained after experimenting in the learning phase, we can get the prediction status of any input image.
+**The link to the prediction code which we have done is : 
+https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/main/MySEProject/ImageClassification/ImageClassification/Experiment.cs#L97
 
 ## 4. **Experiment**
 
