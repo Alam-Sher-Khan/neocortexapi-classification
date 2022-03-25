@@ -12,7 +12,7 @@ The MNIST database (Modified National Institute of Standards and Technology data
 In this project we used MNIST images of 28x28 pixels obtained from https://github.com/ddobric/neocortexapi/tree/master/source/UnitTestsProject/MnistPng28x28_smallerdataset
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## 2. **Project Progress**
+## 2. **Project Process**
 
 The goal of this project is to implement a program that uses the existing solution as a library and find the spatial pooler parameter values which influence the learning of images resulting in the best correlation matrix and can also predict any input image based on the learning in HTM.
 When started the application will load images and start the training process. The training process runs in following steps.
@@ -42,21 +42,25 @@ The prediction code added will help to find the precentage of similarity between
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 3. How to use the classifier?
-### Step1 - (To setup input folder for learning/training of images)
-* Images must be copied in the following folder structure along with the application and the config json: (https://github.com/Alam-Sher-Khan/neocortexapi-classification/tree/Alam/ImageClassification/ImageClassification/InputFolder)
+### Step1 - To setup input folder for learning/training of images
+* Images must be copied in the following folder structure along with the application and the config json: https://github.com/Alam-Sher-Khan/neocortexapi-classification/tree/main/MySEProject/ImageClassification/ImageClassification/InputFolder
 
-![image](https://user-images.githubusercontent.com/93146590/159564273-96030bdc-3bb9-4ad5-b308-ac0274393f41.png)
+![image](https://user-images.githubusercontent.com/93146590/160149722-9f3fe332-e379-412e-848b-0669f3315967.png)
+
 
 **The imagesets(MNIST) are stored inside "InputFolder/".**
 
-![image](https://user-images.githubusercontent.com/93146590/159564326-ca4e9307-5181-4467-b678-145fa21c4af5.png)
+![image](https://user-images.githubusercontent.com/93146590/160150110-77ac199c-2096-4cef-8c38-785efc0ae7f1.png)
 
 **Each Imageset is stored inside a folder whose name is the set's label.**
+![image](https://user-images.githubusercontent.com/93146590/160151966-0759b25e-3c05-42db-bfd1-c562bb295f74.png)
 
-![image](https://user-images.githubusercontent.com/93146590/159564704-a33729dd-5e81-4831-8604-c9e98d766fae.png)
 
-### Step2 - (To setup image for prediction code)
-**The link to the prediction code which we have done is : 
+### Step2 - To setup Test folder for testing the prediction of images
+Testing images must be copied in the following folder structure
+
+
+**Below is the link of the prediction code implemented :** 
 https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/main/MySEProject/ImageClassification/ImageClassification/Experiment.cs#L97
 
 ## 4. **Experiment**
