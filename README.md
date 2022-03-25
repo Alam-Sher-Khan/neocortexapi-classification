@@ -3,12 +3,13 @@
 ## 1. NeocortexApi Analyse Image Classification of MNIST Dataset**
 * Our First Objective is to examine the HTM parameters (lobal/Local Inhibition, Potential Radius, Local Area Density and NumofActiveColumnsPerInArea.) which results in the highest similarity for the image of same label/class and lowest similarity between images of different classes of MNIST (Modified National Institute of Standards and Technology) dataset.
 
-* We also have to provide the prediction code for image classification so that after learning, system can classify any given testing image based on the training dataset.
+* We also have to generate the prediction code for image classification so that after training, the system can classify any given testing image based on the similarity with the categories of training dataset.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-### MNIST Dataset
+### What is MNIST Dataset?
 The MNIST database (Modified National Institute of Standards and Technology database) is a large database of handwritten digits that is commonly used for training various image processing systems.The database is also widely used for training and testing in the field of machine learning.The MNIST database contains 60,000 training images and 10,000 testing images.
 
+In this project we used MNIST images of 28x28 pixels obtained from https://github.com/ddobric/neocortexapi/tree/master/source/UnitTestsProject/MnistPng28x28_smallerdataset
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 2. **Project Progress**
