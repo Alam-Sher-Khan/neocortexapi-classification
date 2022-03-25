@@ -87,64 +87,84 @@ namespace ConsoleApp
             //helperFunc.printSimilarityMatrix(listCorrelation, "micro", classes);
             //helperFunc.printSimilarityMatrix(listCorrelation, "macro", classes);
             helperFunc.printSimilarityMatrix(listCorrelation, "both", classes); //Prints output similarity at console
-            //Console.WriteLine(listInputCorrelation["330__332"]); //Prints input similarity at console (Between two images)
 
-
-            // Prediction Code
-            // input image encoding,path of image to be provided for prediction
-            int[] encodedInputImage = ReadImageData("C:/Users/aiman/source/five.png", width, height);
-            var temp1 = cortexLayer.Compute(encodedInputImage, false);
-        
-            // This is a general way to get the SpatialP ooler result from the layer.
-            var activeColumns = cortexLayer.GetResult("sp") as int[];
-
-            var sdrOfInputImage = activeColumns.OrderBy(c => c).ToArray(); //SDR of iput image
-
-            string predictedLabel = PredictLabel(sdrOfInputImage, sdrs);
-            Console.ForegroundColor = ConsoleColor.Red;
-
-            Console.WriteLine($"\n============Input Image Prediction============");
-            Console.ForegroundColor = ConsoleColor.Cyan;
-
-            Console.WriteLine($"\n>>Prediction status: {predictedLabel}"); //Displaying the prediction status obtained from Method "PredictLabel"
-            Console.ForegroundColor = ConsoleColor.White;
-
-
+            //To check the input similarity between two images of Label 'Nine'in InputFolder: 9_pic1.png and 9_pic3.png
+            Console.WriteLine("Input Similarity in Label Nine for images '9_pic1' and '9_pic3': " + (listInputCorrelation["Nine9_pic1__Nine9_pic3"]) + " %");
+            //To check the input similarity between two images of Label 'One' in InputFolder: 1_pic2.png and 1_pic3.png
+            Console.WriteLine("Input Similarity in Label One for images '1_pic1' and '1_pic3': " + (listInputCorrelation["One1_pic2__One1_pic3"]) + " %");
+            //To check the input similarity between two images of Label 'Nine' and 'One' in InputFolder: 9_pic1.png and 1_pic1.png
+            Console.WriteLine("Input Similarity in Between Labels Nine and One for images '9_pic1' and '1_pic1': " + (listInputCorrelation["Nine9_pic1__One1_pic1"]) + " %");
+            #region
             /// <summary>
-            /// Prediction Code done by Group CodeCube (Alam, Aiman & Soundarya)
-            /// The method PredictLabel compares the SDR of input image (testing image) with the SRDs 
-            /// of the images used for learning and outputs the average similarity of Testing Image with
+            /// This helps to get the prediction of all images in the TestFolder in single execution of code
+            /// making it efficient and save time.
+            /// To enable the prediction code to run independently of the local machine, the method DirProject 
+            /// gets the path of directory in which TestFolder is located.
+            /// Images in TestFolder are iterated and paths of testing images in the TestFolder
+            /// are fed to ReadImageData method for encoding.
+            /// </summary>
+            string MyDirPath = DirPath();  //returns path of directory in which TestFolder is located
+            string TestFolderPath = MyDirPath + "\\TestFolder";  //generated full path of TestFolder
+
+            //string array of paths of all testing images with .png file extention in TestFolder
+            string[] imagePaths = Directory.GetFiles(@TestFolderPath, "*.png", SearchOption.AllDirectories);
+            var numberOfTestImages = imagePaths.Length;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"\nNumber of Images to be predicted in the TestFolder: {numberOfTestImages}");
+            for (int i = 0; i < imagePaths.Length; i++) //loop of the images inside the TestFolder
+            {
+                string testingImageName = Path.GetFileNameWithoutExtension(imagePaths[i]);
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine($"\n[{i + 1}] Prediction Result for the Testing Image: {testingImageName}.png");
+                Console.BackgroundColor = ConsoleColor.Black;
+                //Console.ForegroundColor = ConsoleColor.Black;
+                // Prediction Code
+                // Testing image encoding,path of each iterated Testing Image is input to ReadImageData method
+                int[] encodedInputImage = ReadImageData(imagePaths[i], width, height);
+                var temp1 = cortexLayer.Compute(encodedInputImage, false);
+
+                // This is a general way to get the SpatialPooler result from the layer.
+                var activeColumns = cortexLayer.GetResult("sp") as int[];
+
+                var sdrOfTestingImage = activeColumns.OrderBy(c => c).ToArray(); //SDR of presently iterated Testing Image
+
+                string predictedLabel = PredictLabel(sdrOfTestingImage, sdrs);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"\n============Input Image Prediction============");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"\n>>Prediction status: {predictedLabel}"); //Displaying the prediction status obtained from Method "PredictLabel"
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            /// <summary>
+            /// Prediction Code done by Alam Sher Khan & Aiman Zehra
+            /// The method PredictLabel compares the SDR of image to be predicted (Testing Image in TestFolder) with the SRDs 
+            /// of the images used for learning and outputs the average, maximum and minimum similarity of Testing Image with 
             /// Images under each Learning Class (Label) and classify its Label with Maximum Similarity
-            /// 
-            // </summary>
-            string PredictLabel(int[] sdrOfInputImage, Dictionary<string, int[]> sdrs)
+            /// </summary>
+            string PredictLabel(int[] sdrOfTestingImage, Dictionary<string, int[]> sdrs)
             {
                 double similarityWithEachSDR = 0;
-                double similarityWithPreviousSDR = 0;
                 double temp1 = 0;
                 string label = "";
                 foreach (KeyValuePair<string, List<string>> secondEntry in inputsPath)
                 {
-                    double sumOfSimilarities = 0; //sum of similarities with images in Same Class(Label)
-
+                    double sumOfSimilarities = 0; //sum of similarities of Testing Image with Training images in the Same Class(Label)
                     double avgSimilarity = 0;
                     double maxSimilarity = 0;
                     double minSimilarity = 100.0;
-
-                    // loop of each folder in input folder
+                    // loop of each folder in the InputFolder
                     var classLabel2 = secondEntry.Key;
                     var filePathList2 = secondEntry.Value;
                     var numberOfImages2 = filePathList2.Count;
-
-                    for (int j = 0; j < numberOfImages2; j++) // loop of each image in each category of inputs
+                    for (int j = 0; j < numberOfImages2; j++) // loop of each image in each category of Training Label
                     {
                         if (!sdrs.TryGetValue(filePathList2[j], out int[] sdr2)) continue;
 
-                        //calculating the similarity between SDR of Input Images with the SDR of the current iterated image (Learning Dataset)
-                        similarityWithEachSDR = Math.Round(MathHelpers.CalcArraySimilarity(sdrOfInputImage, sdr2),2);
+                        //calculating the similarity between SDR of Testing Image with the SDR of the current iterated image (Training Dataset)
+                        similarityWithEachSDR = Math.Round(MathHelpers.CalcArraySimilarity(sdrOfTestingImage, sdr2), 2);
                         sumOfSimilarities += similarityWithEachSDR;
-
-                        //calculating maximum and minimum similarity of input image with each label
+                        //calculating maximum and minimum similarity of presently tested image with each label
                         if (maxSimilarity < similarityWithEachSDR)
                         {
                             maxSimilarity = similarityWithEachSDR;
@@ -155,17 +175,17 @@ namespace ConsoleApp
                             minSimilarity = similarityWithEachSDR;
                         }
 
-
                     }
-                    //calculating the Average similarity of the Input Image with Learning Images in each Category (Label)
+                    //calculating the Average similarity of the Testing Image with Training Images in each Category (Label)
                     avgSimilarity = Math.Round(sumOfSimilarities /= numberOfImages2, 2);
 
-                    if (avgSimilarity > temp1)
+                    if (maxSimilarity > temp1)
                     {
-                        temp1 = avgSimilarity;
-
+                        temp1 = maxSimilarity;
                         label = $"{"The image is predicted as " + secondEntry.Key}";
-                        if (temp1 < 85.0) //This depends and selected based on the HTM parameters given in htmconfig.json file
+                        //Similarity Threshold Value, it is selected on the basis of similarity matrix
+                        //in the training phase based on HTM parameters given in htmconfig.json file
+                        if (temp1 < 65.0)
                         {
                             label = "The similarity of Input Image is too low, hence the given image might not belong to the Learning Dataset";
                         }
@@ -173,22 +193,29 @@ namespace ConsoleApp
                     }
 
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("\nSimilarity of Input Image to Digit " + secondEntry.Key + ":");
+                    Console.WriteLine("\nSimilarity of Tested Image to Digit " + secondEntry.Key + ":");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("> Max. Similarity:" + maxSimilarity + " %");
                     Console.WriteLine("> Avg. Similarity:" + avgSimilarity + " %");
                     Console.WriteLine("> Min. Similarity:" + minSimilarity + " %");
-                    
                 }
-                //Display the highest similarity  of the Input Image with the training category
+                //Display the highest similarity  of the Testing Image with the training category
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n Highest Similarity is: " + temp1 + " % ");
 
                 return label;
-
             }
 
-    }
+        }
+        //The method DirPath is used for returning the current path of Directory in which TestFolder
+        //is placed
+        public static string DirPath()
+        {
+            string DirPath = System.IO.Directory.GetCurrentDirectory();
+
+            return DirPath;
+        }
+        #endregion
 
         private Tuple<Dictionary<string, int[]>, Dictionary<string, List<string>>> imageBinarization(List<string> directories, int width, int height)
         {
@@ -332,7 +359,7 @@ namespace ConsoleApp
             cortexLayer.HtmModules.Add("sp", sp);
 
             // Learning process will take 1000 iterations (cycles)
-            int maxSPLearningCycles = 1000;
+            int maxSPLearningCycles = 1;
 
             // Save the result SDR into a list of array
             Dictionary<string, int[]> outputValues = new Dictionary<string, int[]>();
