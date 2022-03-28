@@ -44,8 +44,8 @@ The prediction code added will help to find the precentage of similarity between
 3) The prediction code will calculate the Highest similarity between the testing images and the trainign images of the label(Dataset).
 4) The prediction code will give the name of the label which is being predicted with the highest similarity.
 
-**Code Snippet of the Prediction Code from Project**
-
+**Code Snippet of our Prediction Code**
+~~~csharp
             #region
             /// <summary>
             /// This helps to get the prediction of all images in the TestFolder in single execution of code
@@ -169,6 +169,7 @@ The prediction code added will help to find the precentage of similarity between
             return DirPath;
         }
         #endregion
+~~~
 **Below is the link of the prediction code implemented :** 
 https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/4faab23d94c1412130090b1a6281362441010a7a/MySEProject/ImageClassification/Experiment.cs#L97
 
