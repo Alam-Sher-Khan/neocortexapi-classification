@@ -14,6 +14,9 @@ In this project we used MNIST images of 28x28 pixels obtained from https://githu
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 2. **Project Process**
 
+**Workflow of the learning and prediction of MNIST images**
+![image](https://user-images.githubusercontent.com/93146590/160408643-862ebf41-e4ba-4fe8-b404-4841cb724d1d.png)
+
 The goal of this project is to implement a program that uses the existing solution as a library and find the spatial pooler parameter values which influence the learning of images and result in the high similarity of micro correlation matrix and can also predict any input image based on the learning in HTM.
 When started the application will load images and start the training process. The training process runs in following steps.
 
@@ -44,8 +47,6 @@ The prediction code added will help to find the precentage of similarity between
 **Below is the link of the prediction code implemented :** 
 https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/4faab23d94c1412130090b1a6281362441010a7a/MySEProject/ImageClassification/Experiment.cs#L97
 
-**Workflow of the learning and prediction of MNIST images**
-![image](https://user-images.githubusercontent.com/93146590/160408643-862ebf41-e4ba-4fe8-b404-4841cb724d1d.png)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 3. How to use the classifier?
