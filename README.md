@@ -82,4 +82,4 @@ Testing images must be copied in the following folder structure
 ![Capture](https://user-images.githubusercontent.com/93146590/160189988-db37a83d-132d-41ca-a435-8e2d6f9c20ef.JPG)
 
 ## 5. In-Progress
-* We are conducting more experiments to further analyse the effects of other HTM Parameters on learning of MNIST images.
+* We are conducting experiments with more images(30+) in the training dataset to further analyse the effects of other HTM Parameters on learning of MNIST images.
