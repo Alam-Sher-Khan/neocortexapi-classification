@@ -41,8 +41,11 @@ The prediction code added will help to find the precentage of similarity between
 3) The prediction code will calculate the Highest similarity between the testing images and the trainign images of the label(Dataset).
 4) The prediction code will give the name of the label which is being predicted with the highest similarity.
 
+**Below is the link of the prediction code implemented :** 
+https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/4faab23d94c1412130090b1a6281362441010a7a/MySEProject/ImageClassification/Experiment.cs#L97
+
 **Workflow of the learning and prediction of MNIST images**
-![image](https://user-images.githubusercontent.com/93146590/160409595-4f37c4d5-249c-4e6f-bd5d-487584c4d113.png)
+![image](https://user-images.githubusercontent.com/93146590/160408643-862ebf41-e4ba-4fe8-b404-4841cb724d1d.png)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 3. How to use the classifier?
@@ -63,10 +66,7 @@ The prediction code added will help to find the precentage of similarity between
 ### Step2 - To setup Test folder for testing the prediction of images
 Testing images must be copied in the following folder structure
 
-![Test Folder Structure](https://user-images.githubusercontent.com/93146590/160164937-36b9fb3a-c86e-416a-b8ee-950d94a2b3b1.PNG)
-
-**Below is the link of the prediction code implemented :** 
-https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/4faab23d94c1412130090b1a6281362441010a7a/MySEProject/ImageClassification/Experiment.cs#L97
+![Test Folder Structure](https://user-images.githubusercontent.com/93139817/160196610-23590fc5-bfcb-490a-ab21-92079c307c8b.PNG)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
