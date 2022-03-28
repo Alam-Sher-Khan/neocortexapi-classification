@@ -42,7 +42,7 @@ The prediction code added will help to find the precentage of similarity between
 4) The prediction code will give the name of the label which is being predicted with the highest similarity.
 
 **Workflow of the learning and prediction of MNIST images**
-![image](https://user-images.githubusercontent.com/93146590/159539891-125feb98-f7c4-4bc1-8cff-73acc8f1f05c.png)
+![image](https://user-images.githubusercontent.com/93146590/160408747-20ce4d1c-f4af-4618-8cff-094e27d77ac8.png)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 3. How to use the classifier?
