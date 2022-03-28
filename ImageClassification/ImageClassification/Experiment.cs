@@ -89,11 +89,11 @@ namespace ConsoleApp
             helperFunc.printSimilarityMatrix(listCorrelation, "both", classes); //Prints output similarity at console
 
             //To check the input similarity between two images of Label 'Nine'in InputFolder: 9_pic1.png and 9_pic3.png
-            Console.WriteLine("Input Similarity in Label Nine for images '9_pic1' and '9_pic3': " + (listInputCorrelation["Nine9_pic1__Nine9_pic3"])+" %");
+            //Console.WriteLine("Input Similarity in Label Nine for images '9_pic1' and '9_pic3': " + (listInputCorrelation["Nine9_pic1__Nine9_pic3"])+" %");
             //To check the input similarity between two images of Label 'One' in InputFolder: 1_pic2.png and 1_pic3.png
-            Console.WriteLine("Input Similarity in Label One for images '1_pic1' and '1_pic3': " + (listInputCorrelation["One1_pic2__One1_pic3"])+ " %");
+            //Console.WriteLine("Input Similarity in Label One for images '1_pic1' and '1_pic3': " + (listInputCorrelation["One1_pic2__One1_pic3"])+ " %");
             //To check the input similarity between two images of Label 'Nine' and 'One' in InputFolder: 9_pic1.png and 1_pic1.png
-            Console.WriteLine("Input Similarity in Between Labels Nine and One for images '9_pic1' and '1_pic1': " + (listInputCorrelation["Nine9_pic1__One1_pic1"])+ " %");
+            //Console.WriteLine("Input Similarity in Between Labels Nine and One for images '9_pic1' and '1_pic1': " + (listInputCorrelation["Nine9_pic1__One1_pic1"])+ " %");
             #region
             /// <summary>
             /// This helps to get the prediction of all images in the TestFolder in single execution of code
@@ -359,8 +359,7 @@ namespace ConsoleApp
             cortexLayer.HtmModules.Add("sp", sp);
 
             // Learning process will take 1000 iterations (cycles)
-            int maxSPLearningCycles = 1;
-
+            int maxSPLearningCycles = 1000;
             // Save the result SDR into a list of array
             Dictionary<string, int[]> outputValues = new Dictionary<string, int[]>();
 
