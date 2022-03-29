@@ -14,6 +14,9 @@ In this project we used MNIST images of 28x28 pixels obtained from https://githu
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 2. **Project Process**
 
+**Workflow of the learning and prediction of MNIST images**
+![image](https://user-images.githubusercontent.com/93146590/160408643-862ebf41-e4ba-4fe8-b404-4841cb724d1d.png)
+
 The goal of this project is to implement a program that uses the existing solution as a library and find the spatial pooler parameter values which influence the learning of images and result in the high similarity of micro correlation matrix and can also predict any input image based on the learning in HTM.
 When started the application will load images and start the training process. The training process runs in following steps.
 
@@ -41,8 +44,135 @@ The prediction code added will help to find the precentage of similarity between
 3) The prediction code will calculate the Highest similarity between the testing images and the trainign images of the label(Dataset).
 4) The prediction code will give the name of the label which is being predicted with the highest similarity.
 
-**Workflow of the learning and prediction of MNIST images**
-![image](https://user-images.githubusercontent.com/93146590/160409595-4f37c4d5-249c-4e6f-bd5d-487584c4d113.png)
+**Code Snippet of our Prediction Code**
+~~~csharp
+            #region
+            /// <summary>
+            /// This helps to get the prediction of all images in the TestFolder in single execution of code
+            /// making it efficient and save time.
+            /// To enable the prediction code to run independently of the local machine, the method DirProject 
+            /// gets the path of directory in which TestFolder is located.
+            /// Images in TestFolder are iterated and paths of testing images in the TestFolder
+            /// are fed to ReadImageData method for encoding.
+            /// </summary>
+            string MyDirPath = DirPath();  //returns path of directory in which TestFolder is located
+            string TestFolderPath = MyDirPath + "\\TestFolder";  //generated full path of TestFolder
+
+            //string array of paths of all testing images with .png file extention in TestFolder
+            string[] imagePaths = Directory.GetFiles(@TestFolderPath, "*.png", SearchOption.AllDirectories); 
+            var numberOfTestImages = imagePaths.Length;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"\nNumber of Images to be predicted in the TestFolder: {numberOfTestImages}");
+            for (int i = 0; i < imagePaths.Length; i++) //loop of the images inside the TestFolder
+            {
+                string testingImageName = Path.GetFileNameWithoutExtension(imagePaths[i]);
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine($"\n[{i+1}] Prediction Result for the Testing Image: {testingImageName}.png");
+                Console.BackgroundColor = ConsoleColor.Black;
+                //Console.ForegroundColor = ConsoleColor.Black;
+                // Prediction Code
+                // Testing image encoding,path of each iterated Testing Image is input to ReadImageData method
+                int[] encodedInputImage = ReadImageData(imagePaths[i], width, height);
+                var temp1 = cortexLayer.Compute(encodedInputImage, false);
+
+                // This is a general way to get the SpatialPooler result from the layer.
+                var activeColumns = cortexLayer.GetResult("sp") as int[];
+
+                var sdrOfTestingImage = activeColumns.OrderBy(c => c).ToArray(); //SDR of presently iterated Testing Image
+
+                string predictedLabel = PredictLabel(sdrOfTestingImage, sdrs);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"\n============Input Image Prediction============");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"\n>>Prediction status: {predictedLabel}"); //Displaying the prediction status obtained from Method "PredictLabel"
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            /// <summary>
+            /// Prediction Code done by Alam Sher Khan & Aiman Zehra
+            /// The method PredictLabel compares the SDR of image to be predicted (Testing Image in TestFolder) with the SRDs 
+            /// of the images used for learning and outputs the average, maximum and minimum similarity of Testing Image with 
+            /// Images under each Learning Class (Label) and classify its Label with Maximum Similarity
+            /// </summary>
+            string PredictLabel(int[] sdrOfTestingImage, Dictionary<string, int[]> sdrs)
+            {
+                double similarityWithEachSDR = 0;
+                double temp1 = 0;
+                string label = "";
+                foreach (KeyValuePair<string, List<string>> secondEntry in inputsPath)
+                {
+                    double sumOfSimilarities = 0; //sum of similarities of Testing Image with Training images in the Same Class(Label)
+                    double avgSimilarity = 0;
+                    double maxSimilarity = 0;
+                    double minSimilarity = 100.0;
+                    // loop of each folder in the InputFolder
+                    var classLabel2 = secondEntry.Key;
+                    var filePathList2 = secondEntry.Value;
+                    var numberOfImages2 = filePathList2.Count;
+                    for (int j = 0; j < numberOfImages2; j++) // loop of each image in each category of Training Label
+                    {
+                        if (!sdrs.TryGetValue(filePathList2[j], out int[] sdr2)) continue;
+                                                                       
+                        //calculating the similarity between SDR of Testing Image with the SDR of the current iterated image (Training Dataset)
+                        similarityWithEachSDR = Math.Round(MathHelpers.CalcArraySimilarity(sdrOfTestingImage, sdr2),2);
+                        sumOfSimilarities += similarityWithEachSDR;
+                        //calculating maximum and minimum similarity of presently tested image with each label
+                        if (maxSimilarity < similarityWithEachSDR)
+                        {
+                            maxSimilarity = similarityWithEachSDR;
+                        }
+
+                        if (minSimilarity > similarityWithEachSDR)
+                        {
+                            minSimilarity = similarityWithEachSDR;
+                        }
+
+                    }
+                    //calculating the Average similarity of the Testing Image with Training Images in each Category (Label)
+                    avgSimilarity = Math.Round(sumOfSimilarities /= numberOfImages2,2);
+
+                    if (maxSimilarity > temp1)
+                    {
+                        temp1 = maxSimilarity;
+                        label = $"{"The image is predicted as " + secondEntry.Key}";
+                        //Similarity Threshold Value, it is selected on the basis of output similarity matrix
+                        //in the training phase and the extent of overlapping between micro and macro similarity
+                        //based on HTM parameters selected in htmconfig.json file
+                        if (temp1<65.0) 
+                        {
+                            label = "The similarity of Input Image is too low, hence the given image might not belong to the Learning Dataset";
+                        }
+         
+                    }
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nSimilarity of Tested Image to Digit " + secondEntry.Key + ":");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("> Max. Similarity:" + maxSimilarity + " %");
+                    Console.WriteLine("> Avg. Similarity:" + avgSimilarity + " %");
+                    Console.WriteLine("> Min. Similarity:" + minSimilarity + " %");
+                }
+                //Display the highest similarity  of the Testing Image with the training category
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("\n Highest Similarity is: " + temp1 + " % ");
+               
+                return label;
+              }
+
+        }
+        //The method DirPath is used for returning the current path of Directory in which TestFolder
+        //is placed
+        public static string DirPath()
+        {
+            string DirPath = System.IO.Directory.GetCurrentDirectory();
+            
+            return DirPath;
+        }
+        #endregion
+~~~
+**Below is the link of the prediction code implemented :** 
+https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/4faab23d94c1412130090b1a6281362441010a7a/MySEProject/ImageClassification/Experiment.cs#L97
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 3. How to use the classifier?
@@ -63,10 +193,7 @@ The prediction code added will help to find the precentage of similarity between
 ### Step2 - To setup Test folder for testing the prediction of images
 Testing images must be copied in the following folder structure
 
-![Test Folder Structure](https://user-images.githubusercontent.com/93146590/160164937-36b9fb3a-c86e-416a-b8ee-950d94a2b3b1.PNG)
-
-**Below is the link of the prediction code implemented :** 
-https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/4faab23d94c1412130090b1a6281362441010a7a/MySEProject/ImageClassification/Experiment.cs#L97
+![Test Folder Structure](https://user-images.githubusercontent.com/93139817/160196610-23590fc5-bfcb-490a-ab21-92079c307c8b.PNG)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -82,4 +209,4 @@ https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/4faab23d94c14
 ![Capture](https://user-images.githubusercontent.com/93146590/160189988-db37a83d-132d-41ca-a435-8e2d6f9c20ef.JPG)
 
 ## 5. In-Progress
-* We are conducting more experiments to further analyse the effects of other HTM Parameters on learning of MNIST images.
+* We are conducting experiments with more images(30+) in the training dataset to further analyse the effects of other HTM Parameters on learning of MNIST images.
