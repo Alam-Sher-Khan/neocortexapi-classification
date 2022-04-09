@@ -187,7 +187,7 @@ namespace ConsoleApp
                         //in the training phase based on HTM parameters given in htmconfig.json file
                         if (temp1<65.0) 
                         {
-                            label = "The similarity of Input Image is too low, hence the given image might not belong to the Learning Dataset";
+                            label = "The similarity between the tested image and training labels is lower than the required Similarity Threshold to qualify it for prediction, hence the tested image might not belong to the Training Dataset.";
                         }
          
                     }
@@ -359,7 +359,7 @@ namespace ConsoleApp
             cortexLayer.HtmModules.Add("sp", sp);
 
             // Learning process will take 1000 iterations (cycles)
-            int maxSPLearningCycles = 1000;
+            int maxSPLearningCycles = 100;
             // Save the result SDR into a list of array
             Dictionary<string, int[]> outputValues = new Dictionary<string, int[]>();
 
