@@ -149,10 +149,10 @@ namespace ConsoleApp
                 string label = "";
                 foreach (KeyValuePair<string, List<string>> secondEntry in inputsPath)
                 {
-                    double sumOfSimilarities = 0; //sum of similarities of Testing Image with Training images in the Same Class(Label)
-                    double avgSimilarity = 0;
-                    double maxSimilarity = 0;
-                    double minSimilarity = 100.0;
+                    //List 'similarities' save the values of similarity of tested images with SDR of images in 
+                    //the training labels and will later be used to calculate Max, Avg and Min similaries for the tested image
+                    List<double> similarities = new List<double>();
+
                     // loop of each folder in the InputFolder
                     var classLabel2 = secondEntry.Key;
                     var filePathList2 = secondEntry.Value;
@@ -163,22 +163,13 @@ namespace ConsoleApp
                                                                        
                         //calculating the similarity between SDR of Testing Image with the SDR of the current iterated image (Training Dataset)
                         similarityWithEachSDR = Math.Round(MathHelpers.CalcArraySimilarity(sdrOfTestingImage, sdr2),2);
-                        sumOfSimilarities += similarityWithEachSDR;
-                        //calculating maximum and minimum similarity of presently tested image with each label
-                        if (maxSimilarity < similarityWithEachSDR)
-                        {
-                            maxSimilarity = similarityWithEachSDR;
-                        }
-
-                        if (minSimilarity > similarityWithEachSDR)
-                        {
-                            minSimilarity = similarityWithEachSDR;
-                        }
-
+                        similarities.Add(similarityWithEachSDR); //saving similarity values in the list 'similarities'
                     }
-                    //calculating the Average similarity of the Testing Image with Training Images in each Category (Label)
-                    avgSimilarity = Math.Round(sumOfSimilarities /= numberOfImages2,2);
-
+                    //calculating the Maximum,Average and Minimum similarities of the Testing Image with Training Images in each Category (Label)
+                    double maxSimilarity = Math.Round(similarities.Max(),2);
+                    double avgSimilarity = Math.Round(similarities.Average(),2);
+                    double minSimilarity = Math.Round(similarities.Min(),2);
+                    
                     if (maxSimilarity > temp1)
                     {
                         temp1 = maxSimilarity;
@@ -189,20 +180,15 @@ namespace ConsoleApp
                         {
                             label = "The similarity between the tested image and training labels is lower than the required Similarity Threshold to qualify it for prediction, hence the tested image might not belong to the Training Dataset.";
                         }
-         
-                    }
-
+                     }
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("\nSimilarity of Tested Image to Digit " + secondEntry.Key + ":");
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("> Max. Similarity:" + maxSimilarity + " %");
-                    Console.WriteLine("> Avg. Similarity:" + avgSimilarity + " %");
-                    Console.WriteLine("> Min. Similarity:" + minSimilarity + " %");
-                }
+                    Console.WriteLine("> Maximum:" + maxSimilarity + " %, Average:" + avgSimilarity + " %, Minimum:" + minSimilarity + " %");
+                   }
                 //Display the highest similarity  of the Testing Image with the training category
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n Highest Similarity is: " + temp1 + " % ");
-               
                 return label;
               }
 
@@ -359,7 +345,7 @@ namespace ConsoleApp
             cortexLayer.HtmModules.Add("sp", sp);
 
             // Learning process will take 1000 iterations (cycles)
-            int maxSPLearningCycles = 100;
+            int maxSPLearningCycles = 1;
             // Save the result SDR into a list of array
             Dictionary<string, int[]> outputValues = new Dictionary<string, int[]>();
 
