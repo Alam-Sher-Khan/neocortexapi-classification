@@ -156,7 +156,7 @@ The prediction code added will help to find the precentage of similarity between
         #endregion
 ~~~
 **Below is the link of the prediction code implemented :** 
-https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/4faab23d94c1412130090b1a6281362441010a7a/MySEProject/ImageClassification/Experiment.cs#L97
+https://github.com/Alam-Sher-Khan/neocortexapi-classification/blob/475a5690046fe7e17ad91f52e475eb5a42a1325b/MySEProject/ImageClassification/Experiment.cs#L97
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
